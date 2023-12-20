@@ -4,6 +4,7 @@
 
 - node 18.15.0 사용
 - typescript 사용
+- nuxt 3 + typescript + tailwind css + shadcn-vue(unofficial)
 
 ## Nuxt 3 Minimal Starter
 
