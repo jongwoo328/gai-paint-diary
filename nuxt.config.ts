@@ -14,4 +14,8 @@ export default defineNuxtConfig({
      */
     componentDir: "./components/ui",
   },
+  runtimeConfig: {
+    TEST_VALUE: process.env.TEST_VALUE,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  },
 });
