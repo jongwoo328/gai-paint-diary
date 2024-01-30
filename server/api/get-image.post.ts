@@ -26,8 +26,8 @@ export default defineEventHandler(async (event): Promise<ServerResponse<null | G
     };
   }
 
-  const { diary, style } = body;
-  const imageData = await OpenAiService.getImageFromDiary(diary, style);
+  const { diary, style, mood } = body;
+  const imageData = await OpenAiService.getImageFromDiary(diary, style, mood);
   return {
     data: imageData,
     message: "성공",

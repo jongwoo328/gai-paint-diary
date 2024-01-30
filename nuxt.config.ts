@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
+  css: ["./assets/css/font.css"],
   modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt"],
   shadcn: {
     /**

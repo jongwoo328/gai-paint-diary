@@ -17,6 +17,7 @@ export enum Mood {
 }
 
 export type GetImageRequestBody = {
+  date?: string;
   diary: string;
   style: ImageStyle;
   mood: Mood;
