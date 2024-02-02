@@ -12,7 +12,7 @@ const diaries = useLocalStorage<DiaryListItem[]>("diaryList", [
     content:
       "오늘은 금요일에 쉬는 날이다. 혼자 카페에서 노트북을 펴고 프로젝트를 진행하고 있다.\n" +
       "카페안의 사람들은 평화롭게 앉아있다.",
-    imageUrl: "https://img.jongwoo.me/tools/ghost.png",
+    imageUrl: "https://dummyimage.com/1024x1024/fff/000",
     mood: Mood.Happiness,
   },
   {
@@ -20,7 +20,7 @@ const diaries = useLocalStorage<DiaryListItem[]>("diaryList", [
     content:
       "오늘은 금요일에 쉬는 날이다. 혼자 카페에서 노트북을 펴고 프로젝트를 진행하고 있다.\n" +
       "카페안의 사람들은 평화롭게 앉아있다.",
-    imageUrl: "https://img.jongwoo.me/tools/ghost.png",
+    imageUrl: "https://dummyimage.com/1024x1024/fff/000",
     mood: Mood.Happiness,
   },
   {
@@ -28,7 +28,7 @@ const diaries = useLocalStorage<DiaryListItem[]>("diaryList", [
     content:
       "오늘은 금요일에 쉬는 날이다. 혼자 카페에서 노트북을 펴고 프로젝트를 진행하고 있다.\n" +
       "카페안의 사람들은 평화롭게 앉아있다.",
-    imageUrl: "https://img.jongwoo.me/tools/ghost.png",
+    imageUrl: "https://dummyimage.com/1024x1024/fff/000",
     mood: Mood.Happiness,
   },
 ]);

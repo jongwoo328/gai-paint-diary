@@ -67,18 +67,18 @@ onBeforeRouteLeave(() => {
     <div class="bg-color w-screen h-screen">
       <div class="pt-6 text-5xl font-bold text-center">📝 {{ dateResult }} 일기</div>
       <div class="flex flex-row items-center justify-center"></div>
-      <div class="flex row items-center justify-center m-8">
+      <div class="flex flex-col md:flex-row items-start justify-center m-8">
         <nuxt-img
           alt="image"
-          class="my-2 w-1/3 h-auto rounded-md px-3 py-2 border-black border-4 mr-8"
+          class="w-full md:w-1/3 my-2 h-auto rounded-md px-3 py-2 border-black border-4 mr-8"
           :src="imageResult"
         />
-        <div>
-          <div class="text mb-10">
+        <div class="flex flex-col self-stretch h-auto">
+          <div class="text my-6 flex flex-row justify-center">
             <span>오늘의 감정은 &nbsp;</span>
             <mood-text :mood="moodResult" />
           </div>
-          <p class="text whitespace-pre-wrap">{{ diaryResult }}</p>
+          <p class="text whitespace-pre-wrap diary-text flex-1">{{ diaryResult }}</p>
         </div>
       </div>
     </div>
@@ -91,6 +91,13 @@ onBeforeRouteLeave(() => {
 
 <style scoped lang="postcss">
 .text {
-  @apply text-3xl mt-2;
+  @apply text-3xl;
+}
+
+.diary-text {
+  background-image: linear-gradient(to bottom, transparent, transparent 95%, #000 95%);
+  background-size: 100% 40px;
+  line-height: 40px;
+  min-height: 130px;
 }
 </style>
