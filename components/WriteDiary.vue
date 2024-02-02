@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { type GetImageRequestBody, ImageStyle, Mood } from "~/shared/types/request";
+import { ImageStyle, Mood } from "~/shared/types/request";
+import { useDiaryStore } from "~/stores/DiaryStore";
+import type { DiaryItem } from "~/types/diaryItem";
 
 const date = ref("");
 const content = ref("");
 const mood = ref(Mood.Happiness);
 const style = ref(ImageStyle.PixelArt);
 
-const emit = defineEmits(["create"]);
+const diaryStore = useDiaryStore();
 
 const isValid = computed(() => {
   return date.value !== "" && content.value !== "";
@@ -21,21 +23,21 @@ const imageStyleOptions = computed(() => {
 });
 
 const showResult = () => {
-  const data: GetImageRequestBody = {
+  const data: DiaryItem = {
     date: date.value,
     mood: mood.value,
     style: style.value,
     diary: content.value,
   };
-  emit("create", data);
+  diaryStore.setDiary(data);
 };
 </script>
 
 <template>
   <div class="bg-color w-screen h-screen">
-    <div class="flex flex-col space-y-1.5 p-6">
-      <h1 class="text-6xl font-bold">오늘 하루를 그려줘</h1>
-      <p class="text-3xl text-gray-500 dark:text-gray-400">당신의 오늘 하루는 어땠나요? AI가 감정과 일기를 바탕으로 원하는 스타일의 그림체로 하루를 그려줘요.</p>
+    <div class="flex flex-col p-3">
+      <h1 class="text-7xl font-bold">오늘 하루를 그려줘</h1>
+      <p class="mt-5 text-3xl text-gray-500 dark:text-gray-400">당신의 오늘 하루는 어땠나요? AI가 감정과 일기를 바탕으로 원하는 스타일의 그림체로 하루를 그려줘요.</p>
     </div>
     <div class="p-6">
       <div class="space-y-4">
@@ -99,14 +101,16 @@ const showResult = () => {
             v-model="content"
           />
         </div>
-        <button
-          class="text-3xl inline-flex items-center justify-center rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 w-full bg-indigo-500 hover:bg-indigo-700"
-          type="submit"
-          :disabled="!isValid"
-          @click="showResult"
-        >
-          이미지 생성
-        </button>
+        <nuxt-link to="/result">
+          <button
+            class="text-3xl inline-flex items-center justify-center rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 w-full bg-indigo-500 hover:bg-indigo-700"
+            type="submit"
+            :disabled="!isValid"
+            @click="showResult"
+          >
+            이미지 생성
+          </button>
+        </nuxt-link>
       </div>
     </div>
   </div>
