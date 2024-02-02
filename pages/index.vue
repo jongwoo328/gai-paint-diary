@@ -32,27 +32,17 @@ const createImage = async (request: GetImageRequestBody) => {
 
 <!--main 화면-->
 <template>
-  <div class="bg-color">
-    <write-diary @create="createImage" />
-    <div v-if="showLoading" id="loading" class="flex items-center justify-center w-screen h-screen">
-      <loading class="w-1/2" />
-    </div>
-    <div v-if="showResult">
-      <result-image id="result-image" :result-image="imageResult" :diary="diary" />
-    </div>
-    <div v-if="imageResult === 'FAILED'" class="flex flex-col items-center justify-center w-screen h-screen">
-      <sad-face class="w-1/3" />
-      <div class="my-6 text-3xl text-center">API 통신을 실패했습니다! 다시 시도해주세요.</div>
-    </div>
+  <write-diary @create="createImage" />
+  <div v-if="showLoading" id="loading" class="flex items-center justify-center w-screen h-screen">
+    <loading class="w-1/2" />
+  </div>
+  <div v-if="showResult">
+    <result-image id="result-image" :result-image="imageResult" :diary="diary" />
+  </div>
+  <div v-if="imageResult === 'FAILED'" class="flex flex-col items-center justify-center w-screen h-screen">
+    <sad-face class="w-1/3" />
+    <div class="my-6 text-3xl text-center">API 통신을 실패했습니다! 다시 시도해주세요.</div>
   </div>
 </template>
 
-<style scoped lang="postcss">
-.bg-color {
-  @apply mx-auto space-y-6 bg-[#FFFAF0];
-}
-
-* {
-  font-family: "soul-pentastic-epilogue-regular", sans-serif;
-}
-</style>
+<style scoped lang="postcss"></style>

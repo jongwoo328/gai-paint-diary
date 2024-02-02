@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
   css: ["./assets/css/font.css"],
-  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@vueuse/nuxt", "@nuxt/image"],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -19,4 +19,6 @@ export default defineNuxtConfig({
     TEST_VALUE: process.env.TEST_VALUE,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
+
+  image: {},
 });
