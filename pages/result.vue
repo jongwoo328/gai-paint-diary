@@ -3,10 +3,12 @@ import SadFace from "~/components/emoji/SadFace.vue";
 import Loading from "~/components/loading/Loading.vue";
 import { useDiaryStore } from "~/stores/DiaryStore";
 import { type GetImageRequestBody, Mood } from "~/shared/types/request";
+import type { DiaryListItem } from "~/types";
 
 const showLoading = ref(true);
 const showResult = ref(false);
 
+const diaries = useLocalStorage<DiaryListItem[]>("diaryList", []);
 const diaryStore = useDiaryStore();
 const { getDiary } = storeToRefs(diaryStore);
 const imageResult = ref("");
@@ -22,6 +24,13 @@ onMounted(async () => {
   showLoading.value = false;
   if (imageResult.value !== "FAILED") {
     showResult.value = true;
+    const newDiaryItem: DiaryListItem = {
+      date: getDiary.value.date,
+      mood: getDiary.value.mood,
+      content: getDiary.value.diary,
+      imageUrl: imageResult.value,
+    };
+    diaries.value.push(newDiaryItem);
   }
 });
 
@@ -59,7 +68,7 @@ const moodTextColor = computed(() => {
         <div class="flex flex-row items-center justify-center">
         </div>
         <div class="flex row items-center justify-center m-8">
-          <img
+          <nuxt-img
             alt="image"
             class="my-2 w-1/3 h-auto rounded-md px-3 py-2 border-black border-4 mr-8"
             :src="imageResult"

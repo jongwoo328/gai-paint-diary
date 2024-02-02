@@ -9,7 +9,7 @@ export type DiaryListItem = {
 };
 
 export type DiaryItem = {
-  date?: string;
+  date: string;
   diary: string;
   style: ImageStyle;
   mood: Mood;
