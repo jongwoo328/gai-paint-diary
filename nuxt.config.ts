@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
   css: ["./assets/css/font.css"],
-  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@pinia/nuxt"],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -14,6 +14,12 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: "./components/ui",
+  },
+  imports: {
+    dirs: ["./stores"],
+  },
+  pinia: {
+    autoImports: ["defineStore"],
   },
   runtimeConfig: {
     TEST_VALUE: process.env.TEST_VALUE,
