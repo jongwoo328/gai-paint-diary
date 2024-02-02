@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ImageStyle, Mood } from "~/shared/types/request";
 import { useDiaryStore } from "~/stores/DiaryStore";
-import type { DiaryItem } from "~/types/diaryItem";
+import type { DiaryItem } from "~/types";
 
 const date = ref("");
 const content = ref("");

@@ -1,6 +1,6 @@
 import { ImageStyle, Mood } from "~/shared/types/request";
-import type { DiaryItem } from "~/types/diaryItem";
-// auth 스토어
+import type { DiaryItem } from "~/types";
+
 export const useDiaryStore = defineStore("diary", {
   state: () => {
     return {
