@@ -78,7 +78,7 @@ onBeforeRouteLeave(() => {
             <span>오늘의 감정은 &nbsp;</span>
             <mood-text :mood="moodResult" />
           </div>
-          <p class="text">{{ diaryResult }}</p>
+          <p class="text whitespace-pre-wrap">{{ diaryResult }}</p>
         </div>
       </div>
     </div>
