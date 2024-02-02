@@ -1,29 +1,26 @@
 <script setup lang="ts">
 import ListIcon from "~/components/button/ListIcon.vue";
 import HomeIcon from "~/components/button/HomeIcon.vue";
+import NavigationTooltip from "~/components/NavigationTooltip.vue";
 </script>
 
 <template>
-  <div class="flex flex-row items-center justify-center p-6">
-    <div class="has-tooltip">
-      <span class="tooltip rounded shadow-lg p-2 bg-white -mb-8">메인화면으로 돌아가기</span>
-      <HomeIcon class="w-6 mr-5" />
-    </div>
-    <div class="has-tooltip">
-      <span class="tooltip rounded shadow-lg p-2 bg-white -mb-8">결과 리스트 보기</span>
-      <span><ListIcon class="w-4" /></span>
-    </div>
-  </div>
+  <nav class="flex flex-row items-center justify-center p-6 gap-4">
+    <NuxtLink to="/" class="relative nav-anchor p-2">
+      <HomeIcon class="h-6 cursor-pointer" />
+      <navigation-tooltip text="메인 화면으로 돌아가기" class="absolute opacity-0 tooltip-wrap" />
+    </NuxtLink>
+    <NuxtLink to="/list" class="relative nav-anchor p-2">
+      <ListIcon class="h-6 cursor-pointer" />
+      <navigation-tooltip text="결과 리스트 보기" class="absolute opacity-0 tooltip-wrap" />
+    </NuxtLink>
+  </nav>
 </template>
 
 <style scoped lang="postcss">
-.tooltip {
-  @apply invisible absolute;
-  cursor: default;
-}
-
-.has-tooltip:hover .tooltip {
-  @apply visible z-auto;
-  cursor: pointer;
+.nav-anchor:hover {
+  .tooltip-wrap {
+    opacity: 1;
+  }
 }
 </style>
