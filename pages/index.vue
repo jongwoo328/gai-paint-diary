@@ -5,10 +5,8 @@ import Navigation from "~/components/Navigation.vue";
 
 <!--main 화면-->
 <template>
-  <div class="bg-color">
-    <navigation />
-    <write-diary />
-  </div>
+  <navigation />
+  <write-diary />
 </template>
 
 <style scoped lang="postcss"></style>

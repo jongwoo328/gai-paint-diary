@@ -60,34 +60,32 @@ onBeforeRouteLeave(() => {
 });
 </script>
 <template>
-  <div class="bg-color">
-    <div v-if="showLoading" id="loading" class="flex items-center justify-center w-screen h-screen">
-      <loading class="w-1/2" />
-    </div>
-    <div v-if="showResult">
-      <div class="bg-color w-screen h-screen">
-        <div class="pt-6 text-5xl font-bold text-center">📝 {{ dateResult }} 일기</div>
-        <div class="flex flex-row items-center justify-center"></div>
-        <div class="flex row items-center justify-center m-8">
-          <nuxt-img
-            alt="image"
-            class="my-2 w-1/3 h-auto rounded-md px-3 py-2 border-black border-4 mr-8"
-            :src="imageResult"
-          />
-          <div>
-            <div class="text mb-10">
-              <span>오늘의 감정은 &nbsp;</span>
-              <mood-text :mood="moodResult" />
-            </div>
-            <p class="text">{{ diaryResult }}</p>
+  <div v-if="showLoading" id="loading" class="flex items-center justify-center w-screen h-screen">
+    <loading class="w-1/2" />
+  </div>
+  <div v-if="showResult">
+    <div class="bg-color w-screen h-screen">
+      <div class="pt-6 text-5xl font-bold text-center">📝 {{ dateResult }} 일기</div>
+      <div class="flex flex-row items-center justify-center"></div>
+      <div class="flex row items-center justify-center m-8">
+        <nuxt-img
+          alt="image"
+          class="my-2 w-1/3 h-auto rounded-md px-3 py-2 border-black border-4 mr-8"
+          :src="imageResult"
+        />
+        <div>
+          <div class="text mb-10">
+            <span>오늘의 감정은 &nbsp;</span>
+            <mood-text :mood="moodResult" />
           </div>
+          <p class="text">{{ diaryResult }}</p>
         </div>
       </div>
     </div>
-    <div v-if="imageResult === 'FAILED'" class="flex flex-col items-center justify-center w-screen h-screen">
-      <sad-face class="w-1/3" />
-      <div class="my-6 text-3xl text-center">API 통신을 실패했습니다! 다시 시도해주세요.</div>
-    </div>
+  </div>
+  <div v-if="imageResult === 'FAILED'" class="flex flex-col items-center justify-center w-screen h-screen">
+    <sad-face class="w-1/3" />
+    <div class="my-6 text-3xl text-center">API 통신을 실패했습니다! 다시 시도해주세요.</div>
   </div>
 </template>
 
