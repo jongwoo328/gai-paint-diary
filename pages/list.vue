@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { DiaryListItem } from "~/types";
 import { Mood } from "~/shared/types/request";
+import { useDiaryStore } from "~/stores/DiaryStore";
+
+const { setSelectedDiary } = useDiaryStore();
 
 const diaries = useLocalStorage<DiaryListItem[]>("diaryList", [
   // 테스트를 위한 정보, 실제로는 [] 로 사용
@@ -29,11 +32,16 @@ const diaries = useLocalStorage<DiaryListItem[]>("diaryList", [
     mood: Mood.Happiness,
   },
 ]);
+
+const onClickItem = (diary: DiaryListItem) => {
+  setSelectedDiary(diary);
+  return navigateTo("/result");
+};
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-4 p-4 md:p-6 mx-20 lg:mx-40 xl:mx-80 2xl:mx-96">
-    <diary-list-item v-for="diary in diaries" :key="diary.imageUrl" :diary="diary" />
+    <diary-list-item v-for="diary in diaries" :key="diary.imageUrl" :diary="diary" @click="onClickItem(diary)" />
   </div>
 </template>
 

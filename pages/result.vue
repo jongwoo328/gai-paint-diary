@@ -10,10 +10,32 @@ const showResult = ref(false);
 
 const diaries = useLocalStorage<DiaryListItem[]>("diaryList", []);
 const diaryStore = useDiaryStore();
-const { getDiary } = storeToRefs(diaryStore);
+const { getDiary, getSelectedDiary } = storeToRefs(diaryStore);
+
 const imageResult = ref("");
+const moodResult = ref("");
+const dateResult = ref("");
+const diaryResult = ref("");
 
 onMounted(async () => {
+  if (getSelectedDiary.value) {
+    showLoading.value = false;
+    const { content, mood, imageUrl, date } = getSelectedDiary.value;
+
+    imageResult.value = imageUrl;
+    dateResult.value = date;
+    moodResult.value = mood;
+    diaryResult.value = content;
+    showResult.value = true;
+
+    diaryStore.deleteSelectedDiary();
+    return;
+  }
+
+  moodResult.value = getDiary.value.mood;
+  dateResult.value = getDiary.value.date;
+  diaryResult.value = getDiary.value.diary;
+
   const request: GetImageRequestBody = {
     diary: getDiary.value.diary,
     mood: getDiary.value.mood,
@@ -64,9 +86,8 @@ const moodTextColor = computed(() => {
     </div>
     <div v-if="showResult">
       <div class="bg-color w-screen h-screen">
-        <div class="pt-6 text-5xl font-bold text-center">📝 {{ getDiary.date }} 일기</div>
-        <div class="flex flex-row items-center justify-center">
-        </div>
+        <div class="pt-6 text-5xl font-bold text-center">📝 {{ dateResult }} 일기</div>
+        <div class="flex flex-row items-center justify-center"></div>
         <div class="flex row items-center justify-center m-8">
           <nuxt-img
             alt="image"
@@ -76,9 +97,9 @@ const moodTextColor = computed(() => {
           <div>
             <div class="text mb-10">
               <span>오늘의 감정은 &nbsp;</span>
-              <span :class="moodTextColor">{{ getDiary.mood }}</span>
+              <span :class="moodTextColor">{{ moodResult }}</span>
             </div>
-            <p class="text">{{ getDiary.diary }}</p>
+            <p class="text">{{ diaryResult }}</p>
           </div>
         </div>
       </div>
