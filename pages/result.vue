@@ -13,7 +13,7 @@ const diaryStore = useDiaryStore();
 const { getDiary, getSelectedDiary } = storeToRefs(diaryStore);
 
 const imageResult = ref("");
-const moodResult = ref("");
+const moodResult = ref<Mood>(getDiary.value.mood);
 const dateResult = ref("");
 const diaryResult = ref("");
 
@@ -55,29 +55,6 @@ onMounted(async () => {
   }
 });
 
-const moodTextColor = computed(() => {
-  switch (getDiary.value.mood) {
-    case Mood.Happiness:
-      return "bg-yellow-200";
-    case Mood.Love:
-      return "bg-red-200";
-    case Mood.Expectation:
-      return "bg-green-200";
-    case Mood.Tranquility:
-      return "bg-purple-200";
-    case Mood.Relief:
-      return "bg-pink-200";
-    case Mood.Appreciation:
-      return "bg-orange-200";
-    case Mood.Sadness:
-      return "bg-blue-200";
-    case Mood.Worry:
-      return "bg-blue-200";
-    case Mood.Scary:
-      return "bg-indigo-200";
-  }
-});
-
 onBeforeRouteLeave(() => {
   diaryStore.deleteSelectedDiary();
 });
@@ -100,7 +77,7 @@ onBeforeRouteLeave(() => {
           <div>
             <div class="text mb-10">
               <span>오늘의 감정은 &nbsp;</span>
-              <span :class="moodTextColor">{{ moodResult }}</span>
+              <mood-text :mood="moodResult" />
             </div>
             <p class="text">{{ diaryResult }}</p>
           </div>
