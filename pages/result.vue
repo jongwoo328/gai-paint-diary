@@ -28,7 +28,6 @@ onMounted(async () => {
     diaryResult.value = content;
     showResult.value = true;
 
-    diaryStore.deleteSelectedDiary();
     return;
   }
 
@@ -77,6 +76,10 @@ const moodTextColor = computed(() => {
     case Mood.Scary:
       return "bg-indigo-200";
   }
+});
+
+onBeforeRouteLeave(() => {
+  diaryStore.deleteSelectedDiary();
 });
 </script>
 <template>
