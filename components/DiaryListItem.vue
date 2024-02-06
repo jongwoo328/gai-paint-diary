@@ -19,7 +19,7 @@ defineProps<{
       <div class="flex flex-col p-2 md:pl-4 overflow-hidden max-h-56 md:max-h-none w-full text-2xl">
         <div class="flex flex-row justify-between">
           <span v-text="diary.date" />
-          <span v-text="diary.mood" />
+          <mood-text :mood="diary.mood" />
         </div>
         <p class="diary-content mt-2 flex-1" v-text="diary.content" />
       </div>
