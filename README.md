@@ -1,6 +1,14 @@
-# gai-paint-diary
+# 오늘 하루를 그려줘
 
-## Settings
+> 현재 .env 파일에 적혀있는 OpenAI API 키는 만료되었습니다.
+>
+> 실제 구동을 위해서는 새 API 키 발급이 필요합니다.
+
+## Background
+
+- 프로젝트 시작 배경은 [여기](https://hyejung.notion.site/5226c0df06174c078358043a89959240?pvs=4)를 클릭해주세요!
+
+## Project Settings
 
 - node 18.15.0 사용
 - typescript 사용
